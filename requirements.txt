@@ -6,6 +6,6 @@ requests-mock==1.5.2
 requests-cache==0.4.13
 beautifulsoup4==4.7.1
 humanize==0.5.1
-responses==0.10.5
-talisker[gunicorn]==0.14.2
 python-dateutil==2.8.0
+talisker[gunicorn]==0.14.2
+responses==0.10.5
