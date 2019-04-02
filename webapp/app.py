@@ -86,16 +86,21 @@ def clear_trailing():
 @app.route("/")
 def homepage():
     """
-    Redirect to the frontpage topic
+    Show the custom homepage
     """
 
-    frontpage, nav_html = discourse.parse_frontpage()
+    intro, nav_html = discourse.parse_frontpage()
 
-    return flask.redirect(frontpage["path"])
+    return flask.render_template("homepage.html", nav_html=nav_html)
 
 
 @app.route("/<path:path>")
 def document(path):
+    # Redirect frontpage topic to homepage
+    if path.endswith(f"/{discourse.frontpage_id}"):
+        return flask.redirect("/")
+
+    # Get document
     try:
         document, nav_html = discourse.get_document(path)
     except RedirectFoundError as redirect_error:
@@ -106,6 +111,7 @@ def document(path):
         document = nav_error.document
         nav_html = f"<p>{str(nav_error)}</p>"
 
+    # Render document
     return flask.render_template(
         "document.html",
         title=document["title"],
