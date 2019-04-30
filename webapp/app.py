@@ -94,6 +94,17 @@ def homepage():
     return flask.render_template("homepage.html", nav_html=nav_html)
 
 
+@app.route("/commands")
+def commands():
+    """
+    Show the static commands page
+    """
+
+    intro, nav_html = discourse.parse_frontpage()
+
+    return flask.render_template("commands.html", nav_html=nav_html)
+
+
 @app.route("/<path:path>")
 def document(path):
     # Redirect frontpage topic to homepage
