@@ -3,43 +3,41 @@ from urllib.parse import urlparse, urlunparse, unquote
 
 # Third-party
 import flask
-from requests.exceptions import HTTPError
 from canonicalwebteam.yaml_responses.flask_helpers import (
     prepare_deleted,
     prepare_redirects,
 )
+from canonicalwebteam.discourse_docs import DiscourseAPI, DiscourseDocs
+from canonicalwebteam.discourse_docs.parsers import parse_index
 
-# Local
-from webapp.models import (
-    DiscourseDocs,
-    NavigationParseError,
-    RedirectFoundError,
-)
-
-
-discourse = DiscourseDocs(
-    base_url="https://discourse.jujucharms.com/",
-    frontpage_id=1087,
-    category_id=22,  # The "docs" category
-)
 
 app = flask.Flask(__name__)
 app.template_folder = "../templates"
 app.static_folder = "../static"
 app.url_map.strict_slashes = False
 
+discourse_index_id = 1087
+
+discourse_api = DiscourseAPI(base_url="https://discourse.jujucharms.com/")
+discourse_docs = DiscourseDocs(
+    api=discourse_api,
+    index_topic_id=discourse_index_id,
+    category_id=22,
+    document_template="document.html",
+)
+discourse_docs.init_app(app, url_prefix="/")
+
 # Parse redirects.yaml and permanent-redirects.yaml
 app.before_request(prepare_redirects())
 
 
 def deleted_callback(context):
-    try:
-        frontpage, nav_html = discourse.parse_frontpage()
-    except NavigationParseError as nav_error:
-        nav_html = f"<p>{str(nav_error)}</p>"
+    index = parse_index(discourse_api.get_topic(discourse_index_id))
 
     return (
-        flask.render_template("410.html", nav_html=nav_html, **context),
+        flask.render_template(
+            "410.html", navigation=index["navigation"], **context
+        ),
         410,
     )
 
@@ -49,12 +47,12 @@ app.before_request(prepare_deleted(view_callback=deleted_callback))
 
 @app.errorhandler(404)
 def page_not_found(e):
-    try:
-        frontpage, nav_html = discourse.parse_frontpage()
-    except NavigationParseError as nav_error:
-        nav_html = f"<p>{str(nav_error)}</p>"
+    index = parse_index(discourse_api.get_topic(discourse_index_id))
 
-    return flask.render_template("404.html", nav_html=nav_html), 404
+    return (
+        flask.render_template("404.html", navigation=index["navigation"]),
+        404,
+    )
 
 
 @app.errorhandler(410)
@@ -83,15 +81,23 @@ def clear_trailing():
         return flask.redirect(new_uri)
 
 
+# Remove homepage route so we can redefine it
+for url in app.url_map._rules:
+    if url.rule == '/':
+        app.url_map._rules.remove(url)
+
+
 @app.route("/")
 def homepage():
     """
     Show the custom homepage
     """
 
-    intro, nav_html = discourse.parse_frontpage()
+    index = parse_index(discourse_api.get_topic(discourse_index_id))
 
-    return flask.render_template("homepage.html", nav_html=nav_html)
+    return flask.render_template(
+        "homepage.html", navigation=index["navigation"]
+    )
 
 
 @app.route("/commands")
@@ -100,34 +106,8 @@ def commands():
     Show the static commands page
     """
 
-    intro, nav_html = discourse.parse_frontpage()
+    index = parse_index(discourse_api.get_topic(discourse_index_id))
 
-    return flask.render_template("commands.html", nav_html=nav_html)
-
-
-@app.route("/<path:path>")
-def document(path):
-    # Redirect frontpage topic to homepage
-    if path.endswith(f"/{discourse.frontpage_id}"):
-        return flask.redirect("/")
-
-    # Get document
-    try:
-        document, nav_html = discourse.get_document(path)
-    except RedirectFoundError as redirect_error:
-        return flask.redirect(redirect_error.redirect_path)
-    except HTTPError as http_error:
-        flask.abort(http_error.response.status_code)
-    except NavigationParseError as nav_error:
-        document = nav_error.document
-        nav_html = f"<p>{str(nav_error)}</p>"
-
-    # Render document
     return flask.render_template(
-        "document.html",
-        title=document["title"],
-        body_html=document["body_html"],
-        forum_link=document["forum_link"],
-        updated=document["updated"],
-        nav_html=nav_html,
+        "commands.html", navigation=index["navigation"]
     )
