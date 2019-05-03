@@ -83,7 +83,7 @@ def clear_trailing():
 
 # Remove homepage route so we can redefine it
 for url in app.url_map._rules:
-    if url.rule == '/':
+    if url.rule == "/":
         app.url_map._rules.remove(url)
 
 
