@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "test": "yarn run lint-python && yarn run test-python",
-    "test-python": "python3 -m unittest discover webapp/tests",
+    "test": "yarn run lint-python",
     "lint-python": "flake8 webapp && black --check --line-length 79 webapp",
     "build": "echo 'Nothing to build'",
     "watch": "echo 'Nothing to watch'",
