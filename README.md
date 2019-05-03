@@ -1,6 +1,6 @@
 # docs.jujucharms.com
 
-[![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/docs.jujucharms.com.svg?style=shield)][circleci] [![Code coverage](https://codecov.io/gh/canonical-web-and-design/docs.jujucharms.com/branch/master/graph/badge.svg)][codecov]
+[![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/docs.jujucharms.com.svg?style=shield)](https://circleci.com/gh/canonical-web-and-design/docs.jujucharms.com) [![Code coverage](https://codecov.io/gh/canonical-web-and-design/docs.jujucharms.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/docs.jujucharms.com)
 
 
 ## Usage
