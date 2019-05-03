@@ -1,4 +1,4 @@
-(?P<version>2\.3|2\.4|2\.5)(?P<path>.*): https://old-docs.jujucharms.com/{version}{path}
+(?P<version>1\.[0-9]{1,2}|2\.0|2\.1|2\.2|2\.3|2\.4|2\.5)(?P<path>.*): https://old-docs.jujucharms.com/{version}{path}
 devel/en/about-juju(\.html)?/?: /what-is-juju/1032
 devel/en/actions(\.html)?/?: /working-with-actions/1033
 devel/en/applications(\.html)?/?: /applications/1034
