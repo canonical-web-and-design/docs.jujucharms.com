@@ -79,80 +79,90 @@
       /* --- */
 
       /* Custom navigation colours */
+      .p-navigation {
+        background-color: #022935;
+      }
       
-        
-        .p-navigation {
-          background-color: #022935;
-        }
-        
 
-        
-        .p-navigation a, .p-navigation a:focus, .p-navigation a:hover, .p-navigation a:visited {
-          color: #fff;
-        }
-        
+      
+      .p-navigation a, .p-navigation a:focus, .p-navigation a:hover, .p-navigation a:visited {
+        color: #fff;
+      }
+      
 
-        
-        .p-navigation__link > a:hover {
-          background-color: #011e26;
-        }
+      
+      .p-navigation__link > a:hover {
+        background-color: #011e26;
+      }
 
-        .p-navigation:after {
-          background: #33535d
-        }
+      .p-navigation:after {
+        background: #33535d
+      }
 
-        .p-navigation__link > a {
-          border-color: #33535d;
-        }
+      .p-navigation__link > a {
+        border-color: #33535d;
+      }
 
-        .p-sidebar-nav {
-          padding-bottom: 1.5rem;
-        }
+      .p-sidebar-nav {
+        padding-bottom: 1.5rem;
+      }
 
-        .p-sidebar-nav h3 {
-          font-size: 1rem;
-          font-weight: 400;
-          line-height: 2;
-          margin: 0;
-          padding: 0;
-        }
+      .p-sidebar-nav h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 2;
+        margin: 0;
+        padding: 0;
+      }
 
-        .p-sidebar-nav ul {
-          margin-top: -.25rem;
-          margin-left: 0;
-          padding-left: 1rem;
-        }
+      .p-sidebar-nav ul {
+        margin-top: -.25rem;
+        margin-left: 0;
+        padding-left: 1rem;
+      }
 
-        .p-sidebar-nav li:first-of-type {
-          padding-top: .5rem;
-        }
-        .p-sidebar-nav li {
-          padding-bottom: 0.125rem;
-          padding-top: 0.125rem;
-        }
+      .p-sidebar-nav li:first-of-type {
+        padding-top: .5rem;
+      }
+      .p-sidebar-nav li {
+        padding-bottom: 0.125rem;
+        padding-top: 0.125rem;
+      }
 
-        .p-sidebar-nav a, .p-sidebar-nav a:visited {
-          color: #111;
-        }
-        .p-sidebar-nav a:hover {
-          color: #007aa6;
-          text-decoration: underline;
-        }
-            
-        .p-sidebar-nav .is-active {
-          position: relative;
-        }
-        
-        .p-sidebar-nav .is-active::before {
-          background-color: #cdcdcd;
-          bottom: -0.25rem;
-          content: '';
-          left: -1rem;
-          position: absolute;
-          top: -0.25rem;
-          width: 0.1875rem;
-        }
-      </style>
+      .p-sidebar-nav a, .p-sidebar-nav a:visited {
+        color: #111;
+      }
+      .p-sidebar-nav a:hover {
+        color: #007aa6;
+        text-decoration: underline;
+      }
+          
+      .p-sidebar-nav .is-active {
+        position: relative;
+      }
+      
+      .p-sidebar-nav .is-active::before {
+        background-color: #cdcdcd;
+        bottom: -0.25rem;
+        content: '';
+        left: -1rem;
+        position: absolute;
+        top: -0.25rem;
+        width: 0.1875rem;
+      }
+
+      /* Hide extra lightbox elements */
+      .lightbox-wrapper img {
+        width: auto;
+        height: auto;
+      }
+      .lightbox-wrapper .meta {
+        display: none;
+      }
+      .lightbox.p-link--external:after {
+        display: none;
+      }
+    </style>
     
     <script src="/static/js/highlight.pack.js"></script>
     <script>
