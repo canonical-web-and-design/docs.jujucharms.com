@@ -175,3 +175,7 @@ devel/en/users-sample-commands(\.html)?/?: /sample-command-usage-and-output-inte
 devel/en/users(\.html)?/?: /user-types-and-abilities/1201
 devel/en/whats-new(\.html)?/?: /whats-new-in-2-5/1202
 devel/en/commands(\.html)?/?: /commands
+getting-started(\.html)?/?: /getting-started-with-juju
+en/reference-install(\.html)?/?: /installing
+authors-charm-writing(\.html)?/?: /charm-writing
+developer-getting-started(\.html)?/?: /getting-started-with-charm-development
