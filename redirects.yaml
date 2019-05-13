@@ -1,6 +1,7 @@
 (?P<version>1\.[0-9]{1,2}|2\.0|2\.1|2\.2|2\.3|2\.4|2\.5)(?P<path>.*): https://old-docs.jujucharms.com/{version}{path}
 
 # Redirect /devel, /stable, /en (from old sitemap) to /
+(devel|stable|en|devel/en|stable/en): /
 (devel|stable|en|devel/en|stable/en)/(?P<path>.*): /{path}
 
 # Remove HTML extensions
