@@ -1,12 +1,12 @@
 # App dependencies
-Flask==1.0.2
-canonicalwebteam.http==0.1.6
-canonicalwebteam.yaml_responses[flask]==1.1.0
+Flask==1.0.3
+canonicalwebteam.http==1.0.1
+canonicalwebteam.yaml_responses[flask]==1.1.1
 canonicalwebteam.discourse-docs==0.4.0
-requests-mock==1.5.2
-requests-cache==0.4.13
+requests-mock==1.6.0
+requests-cache==0.5.0
 beautifulsoup4==4.7.1
 humanize==0.5.1
 python-dateutil==2.8.0
-talisker[gunicorn]==0.14.2
+talisker[gunicorn]==0.14.3
 responses==0.10.6
