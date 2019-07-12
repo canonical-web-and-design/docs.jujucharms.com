@@ -148,3 +148,6 @@ upgrade-series: /upgrading-series
 users-sample-commands: /sample-command-usage-and-output-interpretation
 users: /user-types-and-abilities
 whats-new: /whats-new-2-6
+
+# Other redirects
+help-google/?: /gce-cloud
